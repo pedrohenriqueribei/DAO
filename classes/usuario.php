@@ -34,6 +34,42 @@
 			));	
 		}
 
+		public static function getList(){
+			
+			$dao = new DAO();
+
+			return $dao->select("SELECT * FROM tb_usuario order by id_usuario");
+		}
+
+		public static function getSearch($busca){
+			$dao = new DAO();
+
+			return $dao->select("SELECT * FROM tb_usuario WHERE nome LIKE :SEARCH", array(':SEARCH'=>"%".$busca."%"));
+		}
+
+		public function logon ($login, $password){
+			$dao = new DAO();
+
+			$usuario_logar = $dao->select("SELECT * FROM tb_usuario WHERE nome = :LOGIN AND senha = :PASSWORD", array(
+				":LOGIN"=>$login,
+				":PASSWORD"=>$password
+				));
+
+			if (count($usuario_logar) > 0){
+				
+				$row = $usuario_logar[0];
+
+				$this->setId_usuario($row['id_usuario']);
+				$this->setNome($row['nome']);
+				$this->setSenha($row['senha']);
+				$this->setDataCadastro(new DateTime($row['data_cadastro']));
+			}
+			else {
+				throw new Exception("Login ou senha inválido. ");
+				
+			}
+		}
+
 
 
 		public function getId_usuario(){
