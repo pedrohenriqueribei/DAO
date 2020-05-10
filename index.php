@@ -3,10 +3,34 @@
 	
 	require_once ("config.php");
 
+//ATUALIZAR USUARIO
+	$atualize = new Usuario();
+
+	$usuario->setNome("Mariana");
+	$usuario->setSenha("mariii");
+	$usuario->setId_usuario(14);
+
+	$usuario->atualizar();
+
+
+
+
+
+	//INSERIR USUÁRIO
+
+	/*
+	$usuario = new Usuario();
+
+	$usuario->setNome("Maria");
+	$usuario->setSenha("jose");
+
+	$usuario->inserir();
+	*/
+
 
 //  LOGAR USUARIO
 
-	$login = "Lay";
+/*	$login = "Lay";
 	$senha = "davi";
 
 	$usuario = new Usuario();
@@ -14,7 +38,7 @@
 	$usuario->logon($login, $senha);
 
 	echo $usuario;
-
+*/
 
 
 

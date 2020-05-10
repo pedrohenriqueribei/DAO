@@ -70,6 +70,40 @@
 			}
 		}
 
+		public function inserir(){
+			
+			$dao = new DAO();
+
+			$usuario = $dao->query("INSERT INTO tb_usuario (nome,senha) values (:NOME, :SENHA)", array(
+				':NOME'=>$this->getNome(),
+				':SENHA'=>$this->getSenha()
+				)
+			);
+
+			if (count($usuario) > 0){
+				
+				$row = $usuario[0];
+
+				$this->setId_usuario($row['id_usuario']);
+				$this->setNome($row['nome']);
+				$this->setSenha($row['senha']);
+				$this->setDataCadastro(new DataTime($row['data_cadastro']));
+			}
+
+		}
+
+
+		public function atualizar (){
+
+			$dao = new DAO();
+
+			$dao->qyery("UPDATE tb_usuario SET nome = :NOME AND senha = :SENHA WHERE id_usuario = :ID", array(
+				':NOME'=>$this->getNome(),
+				':SENHA'=>$this->getSenha(),
+				':ID'=>$this->getId_usuario()
+			));
+		}
+
 
 
 		public function getId_usuario(){
