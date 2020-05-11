@@ -4,28 +4,31 @@
 	require_once ("config.php");
 
 //ATUALIZAR USUARIO
+	/*
 	$atualize = new Usuario();
 
-	$usuario->setNome("Mariana");
-	$usuario->setSenha("mariii");
-	$usuario->setId_usuario(14);
+	$atualize->setNome("Mariana");
+	$atualize->setSenha("mariii");
+	$atualize->setId_usuario(65);
 
-	$usuario->atualizar();
-
-
+	$atualize->atualizar();
+*/
+$hoje = date('d/m/Y');
+//echo $hoje;
 
 
 
 	//INSERIR USUÁRIO
 
-	/*
+//	/*
 	$usuario = new Usuario();
 
-	$usuario->setNome("Maria");
-	$usuario->setSenha("jose");
-
+	$usuario->setNome("Moisés");
+	$usuario->setSenha("pentateuco");
+	$usuario->setDataCadastro($hoje);
+	
 	$usuario->inserir();
-	*/
+//	*/
 
 
 //  LOGAR USUARIO

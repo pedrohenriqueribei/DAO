@@ -48,6 +48,7 @@
 		}
 
 		public function logon ($login, $password){
+			
 			$dao = new DAO();
 
 			$usuario_logar = $dao->select("SELECT * FROM tb_usuario WHERE nome = :LOGIN AND senha = :PASSWORD", array(
@@ -74,30 +75,30 @@
 			
 			$dao = new DAO();
 
-			$usuario = $dao->query("INSERT INTO tb_usuario (nome,senha) values (:NOME, :SENHA)", array(
-				':NOME'=>$this->getNome(),
-				':SENHA'=>$this->getSenha()
+			$usuario = $dao->query("INSERT INTO tb_usuario (nome,senha) VALUES (:NOME, :SENHA)", array(
+				":NOME"=>$this->getNome(),
+				":SENHA"=>$this->getSenha()
 				)
 			);
 
-			if (count($usuario) > 0){
+			if(count($usuario) > 0){
 				
 				$row = $usuario[0];
 
-				$this->setId_usuario($row['id_usuario']);
+				//$this->setId_usuario($row['id_usuario']);
 				$this->setNome($row['nome']);
 				$this->setSenha($row['senha']);
-				$this->setDataCadastro(new DataTime($row['data_cadastro']));
+				$this->setDataCadastro(new Date($row['dt_cadastro']));
 			}
 
 		}
 
 
-		public function atualizar (){
+		public function atualizar(){
 
 			$dao = new DAO();
 
-			$dao->qyery("UPDATE tb_usuario SET nome = :NOME AND senha = :SENHA WHERE id_usuario = :ID", array(
+			$dao->query("UPDATE tb_usuario SET nome = :NOME, senha = :SENHA WHERE id_usuario = :ID", array(
 				':NOME'=>$this->getNome(),
 				':SENHA'=>$this->getSenha(),
 				':ID'=>$this->getId_usuario()
