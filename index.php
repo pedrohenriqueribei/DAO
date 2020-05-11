@@ -13,9 +13,14 @@
 
 	$atualize->atualizar();
 */
-$hoje = date('d/m/Y');
+$hoje = date('Y-m-d');
 //echo $hoje;
 
+//	$deletar = new Usuario();
+
+//	$deletar->setId_usuario(74);
+
+//	$deletar->deletar();
 
 
 	//INSERIR USUÁRIO
@@ -23,12 +28,12 @@ $hoje = date('d/m/Y');
 //	/*
 	$usuario = new Usuario();
 
-	$usuario->setNome("Moisés");
-	$usuario->setSenha("pentateuco");
-	$usuario->setDataCadastro($hoje);
-	
+	$usuario->setNome("Carol");
+	$usuario->setSenha("jornal");
+	$usuario->setDatacadastro($hoje);
+
 	$usuario->inserir();
-//	*/
+	//*/
 
 
 //  LOGAR USUARIO
@@ -81,4 +86,16 @@ AGORA ESTÁ USANDO A CLASSE USUARIO
 
 	echo json_encode($usuarios);
  */
+
+
+	//DELETAR POR NOME
+
+/*
+	$deletar = new Usuario();
+
+	$deletar->setNome("Moisés");
+
+	$deletar->deletarPorNome();
+
+*/
  ?>

@@ -5,7 +5,7 @@
 		private $id_usuario;
 		private $nome;
 		private $senha;
-		private $dt_cadastro;
+		private $dataCadastro;
 
 
 
@@ -75,22 +75,12 @@
 			
 			$dao = new DAO();
 
-			$usuario = $dao->query("INSERT INTO tb_usuario (nome,senha) VALUES (:NOME, :SENHA)", array(
+			$usuario = $dao->query("INSERT INTO tb_usuario (nome,senha, data_cadastro) VALUES (:NOME, :SENHA, :DATA)", array(
 				":NOME"=>$this->getNome(),
-				":SENHA"=>$this->getSenha()
+				":SENHA"=>$this->getSenha(),
+				":DATA"=>$this->getDatacadastro()
 				)
 			);
-
-			if(count($usuario) > 0){
-				
-				$row = $usuario[0];
-
-				//$this->setId_usuario($row['id_usuario']);
-				$this->setNome($row['nome']);
-				$this->setSenha($row['senha']);
-				$this->setDataCadastro(new Date($row['dt_cadastro']));
-			}
-
 		}
 
 
@@ -103,6 +93,22 @@
 				':SENHA'=>$this->getSenha(),
 				':ID'=>$this->getId_usuario()
 			));
+		}
+
+
+		public function deletar() {
+			
+			$dao = new DAO();
+
+			$dao->query("DELETE FROM tb_usuario WHERE id_usuario = :ID",array(':ID'=>$this->getId_usuario()
+				));
+		}
+
+		public function deletarPorNome(){
+
+			$dao = new DAO();
+
+			$dao->query("DELETE FROM tb_usuario WHERE nome LIKE :NOME", array(':NOME'=>$this->getNome()));
 		}
 
 
@@ -131,12 +137,12 @@
 			$this->senha = $pass;
 		}
 
-		public function getDataCadastro (){
-			return $this->dt_cadastro;
+		public function getDatacadastro (){
+			return $this->dataCadastro;
 		}
 
-		public function setDataCadastro($data){
-			$this->dt_cadastro = $data;
+		public function setDatacadastro($data){
+			$this->dataCadastro = $data;
 		}
 	}
  ?>
