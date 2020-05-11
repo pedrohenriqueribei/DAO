@@ -20,7 +20,7 @@
 	$bairro = $dados["bairro"];
 
 
-echo "bairro: " . $bairro;
+echo "BAIRRO: " . $bairro;
 
 
 
